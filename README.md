@@ -7,6 +7,7 @@ First, Install the required dependencies by using:
 ```
 
 # It is strongly recommended to use virtual environments like virtualenv, pyenv, anaconda... for this project
+# Anaconda is recommended
 
 pip install -r requirements.txt
 
