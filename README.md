@@ -24,4 +24,4 @@ python3 main.py
 
 The API will be hosted on [127.0.0.1:8000](http://127.0.0.1:8000) .
 
-You can access [127.0.0.1:8000/docs](http://127.0.0.1:8000) to find the APIs' routes, documents and run some test requests on the APIs.
+You can access [127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) to find the APIs' routes, documents and run some test requests on the APIs.

@@ -1,6 +1,5 @@
 import joblib
 import io
-import nest_asyncio
 import uvicorn
 import numpy as np
 
@@ -8,7 +7,6 @@ from PIL import Image
 from fastapi import FastAPI, File
 from fastapi.middleware.cors import CORSMiddleware
 from tensorflow.keras.models import load_model
-from pyngrok import ngrok
 
 model = load_model('cassava-model.h5')
 test_datagen, class_names = joblib.load('model-data.pkl')
