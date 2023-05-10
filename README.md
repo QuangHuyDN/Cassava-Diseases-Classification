@@ -16,7 +16,7 @@ pip install -r requirements.txt
 
 As for **Tensorflow**, you should follow the install instructions in their [official documents](https://www.tensorflow.org/install/pip).
 
-After the required dependencies are installed, run to start the project:
+After the required dependencies are installed, run this to start the project:
 
 ```
 python3 main.py
