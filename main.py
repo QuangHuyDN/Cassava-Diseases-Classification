@@ -32,17 +32,26 @@ async def root():
 @app.post('/classfication/')
 async def classify_image(file: bytes = File(...)):
     img = Image.open(io.BytesIO(file))
-    img = img.resize((224, 224))
+    scaled_img = img.resize((224, 224))
 
-    img_pred = test_datagen.flow(np.expand_dims(np.asarray(img), axis=0))
+    img_pred = test_datagen.flow(np.expand_dims(np.asarray(scaled_img), axis=0))
 
     prediction = model.predict(img_pred)
     proba = list(prediction[0])
     res_val = max(proba)
     res_idx = proba.index(res_val)
+
+    buf = io.BytesIO()
+    if img.width <= 224 and img.height <= 224:
+        scaled_img.save(buf, format='PNG')
+    else:
+        img.save(buf, format='PNG')
+    res_img = buf.getvalue()
+
     res = {
         'Class': class_names[res_idx],
         'Proba': float(res_val),
+        'Img': str(res_img),
     }
     return res
 
