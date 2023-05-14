@@ -33,7 +33,7 @@ async def root():
 
 @app.get('/records/')
 async def records():
-    with open('data.json', 'r') as file:
+    with open('data.json', 'w+') as file:
         data = file.read()
     
     try:
@@ -55,7 +55,7 @@ async def classify_image(file: bytes = File(...)):
     res_val = max(proba)
     res_idx = proba.index(res_val)
 
-    with open('data.json', 'r') as file:
+    with open('data.json', 'w+') as file:
         data = file.read()
     
     try:
