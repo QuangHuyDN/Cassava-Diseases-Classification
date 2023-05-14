@@ -2,6 +2,8 @@ import joblib
 import io
 import uvicorn
 import numpy as np
+import json
+import datetime
 
 from PIL import Image
 from fastapi import FastAPI, File
@@ -29,6 +31,18 @@ app.add_middleware(
 async def root():
     return {'detail': 'API\'s root'}
 
+@app.get('/records/')
+async def records():
+    with open('data.json', 'r') as file:
+        data = file.read()
+    
+    try:
+        data = json.loads(data)
+    except json.decoder.JSONDecodeError:
+        data = []
+
+    return data
+
 @app.post('/classfication/')
 async def classify_image(file: bytes = File(...)):
     img = Image.open(io.BytesIO(file))
@@ -41,17 +55,29 @@ async def classify_image(file: bytes = File(...)):
     res_val = max(proba)
     res_idx = proba.index(res_val)
 
-    buf = io.BytesIO()
-    if img.width <= 224 and img.height <= 224:
-        scaled_img.save(buf, format='PNG')
-    else:
-        img.save(buf, format='PNG')
-    res_img = buf.getvalue()
+    with open('data.json', 'r') as file:
+        data = file.read()
+    
+    try:
+        data = json.loads(data)
+    except json.decoder.JSONDecodeError:
+        data = []
+    finally:
+        n = len(data)
+        data += [{
+            'id': n+1,
+            'Class': class_names[res_idx],
+            'Proba': float(res_val),
+            'created_on': str(datetime.datetime.now().date())
+        }]
+    data = json.dumps(data, indent=4)
 
+    with open('data.json', 'w') as file:
+        file.write(data)
+    
     res = {
         'Class': class_names[res_idx],
         'Proba': float(res_val),
-        'Img': str(res_img),
     }
     return res
 
