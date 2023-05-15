@@ -8,7 +8,7 @@ import datetime
 from PIL import Image
 from fastapi import FastAPI, File
 from fastapi.middleware.cors import CORSMiddleware
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 
 model = load_model('cassava-model.h5')
 test_datagen, class_names = joblib.load('model-data.pkl')

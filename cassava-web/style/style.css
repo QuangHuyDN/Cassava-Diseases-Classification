@@ -1,0 +1,631 @@
+body {
+    font-family: sans-serif;
+    background-color: #eeeeee;
+    position: relative;
+  }
+  
+  .file-upload {
+    background-color: #ffffff;
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+
+  }
+  
+  .file-upload-btn {
+    width: 100%;
+    margin: 0;
+    color: #fff;
+    background: #1FB264;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #15824B;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+  .file-upload-btn:hover {
+    background: #1AA059;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+  .file-upload-btn:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+  
+  .file-upload-content {
+    display: none;
+    text-align: center;
+  }
+  
+  .file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .image-upload-wrap {
+    margin-top: 20px;
+    border: 4px dashed #1FB264;
+    position: relative;
+  }
+  
+  .image-dropping,
+  .image-upload-wrap:hover {
+    background-color: #1FB264;
+    border: 4px dashed #ffffff;
+  }
+  
+  .image-title-wrap {
+    padding: 0 15px 15px 15px;
+    color: #222;
+  }
+  
+  .drag-text {
+    text-align: center;
+  }
+  
+  .drag-text h3 {
+    font-weight: 100;
+    text-transform: uppercase;
+    color: #15824B;
+    padding: 60px 0;
+  }
+  
+  .file-upload-image {
+    max-height: 200px;
+    max-width: 200px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .remove-image {
+    width: 200px;
+    margin: 0;
+    color: #fff;
+    background: #cd4535;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #b02818;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+  .remove-image:hover {
+    background: #c13b2a;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+  .remove-image:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+
+  .direct-input {
+    margin-top: 100px;
+    margin: 40px;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+
+  /* body{
+    
+    
+  } */
+
+  .main-body-container{
+    background-image: url("/image/rwanda_story.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    padding: 0px;
+    background-attachment: fixed;
+    margin: 0px;
+    margin-top: 200px;
+    
+  }
+
+  .title-bar{
+    font-size: 60px;
+    /* position: absolute; */
+    padding-left: 30px;
+    bottom: 30px;
+    color: white;
+    font-weight: bold;
+    padding-top: 40px;
+  }
+
+  .title-box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0px;
+    height: 200px;
+    width: 100%;
+    background-image: url("/image/header.png");
+    background-color: #15824B;
+    background-size: cover;
+    z-index: 150;
+  }
+
+  .main-content{
+    background-color: rgba(255, 255, 255, 0.5); 
+    padding: 0;
+    margin: 0;
+    height: auto;
+  }
+
+  .hsum{
+    color: #1FB264;
+
+    
+  }
+  .in-sum{
+    color:#c13b2a;
+
+  }
+
+  
+  .status{
+    margin: 80px;
+    background-color:white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 1300px;
+    padding-bottom: 30px;
+    margin-bottom: 100px;
+  }
+  .status-box{
+    margin-top: 40px;
+    background-color: white;
+    /* margin-left: 50px; */
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    font-weight: bold;
+    color: green;
+    font-size: 40px;
+    height: 400px;
+    align-items: center;
+  }
+
+  .status-summary{
+    border:#1FB264 solid;
+    margin: 30px;
+    font-size: 20px;
+    width: 500px;
+    padding-top: 70px;
+    background-color: white;
+    font-weight: bold;
+    text-align: left;
+    height: 300px;
+    border-radius: 20px;
+    
+  }
+  .chart-summary{
+    border:#1FB264 solid;
+    margin: 30px;
+    border-radius: 20px;
+    
+    /* background-color: aliceblue; */
+  }
+  .summary-title{
+    
+    background-color: #15824B;
+    /* margin: 40px; */
+    text-align: center;
+    /* color: #1AA059; */
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bolder;
+    font-size: 35px;
+    border-radius: 10px;
+    width: 300px;
+    height: 370px;
+  }
+
+  #total{
+    
+    text-align: center;
+  }
+  .now{
+    margin-bottom: 30px;
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .hsum,.in-sum{
+    text-align: center;
+    margin-top: 30px;
+    
+  }
+
+  .detail{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: auto;
+    margin: 40px;
+    border-radius: 10px;
+    
+  }
+  .detail-title,.direct-title{
+    
+    text-align: center;
+    margin: 40px;
+    font-size: 40px;
+    font-weight: bolder;
+    color: white;
+    background-color:#15824B;
+    border-radius: 10px 10px 0 0;
+    
+    margin: 0px;
+    
+  }
+
+  .detail-info{
+    display: flex;
+    flex-direction: column;
+    max-width: 1100px;
+  }
+  .detail-sec{
+    margin-top: 20px;
+    /* background-color: lightblue; */
+    display: flex;
+    flex-direction: column;
+    border: #15824B solid;
+    border-width: 2px;
+
+  }
+
+  .sec-img{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+  }
+  .img-block{
+    position: relative;
+  }
+  .s-img{
+    width: 100px;
+    margin-left: 20px;
+    border-width: 2px;
+    border: #15824B solid;
+    z-index: 50;
+    position: relative;
+  }
+
+  .scroll-section{
+    height: 600px;
+    overflow: scroll;
+  }
+
+  .sec-name{
+    position: absolute;
+    bottom: 10px;
+    /* right: 10px; */
+    right: 10px;
+    z-index: 100;
+    background-color: white;
+    padding: 5px;
+    color:#15824B;
+    font-weight: bold;
+  }
+
+  .sec-title{
+    margin: 20px;
+    font-weight: bold;
+    color: #15824B;
+    font-size: 25px;
+  }
+
+  .info-box{
+    display: flex;
+    flex-direction: row;
+    
+  }
+
+  .option-box{
+    width: 400px;
+    position: relative;
+    /* background-color: red; */
+    display: flex;
+    margin-left: 100px;
+  }
+
+  .img-zoom-container {
+    position: relative;
+    margin-left: 80px;
+    margin-top: 80px;
+    
+  }
+  
+  .img-zoom-lens {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    /*set the size of the lens:*/
+    width: 40px;
+    height: 40px;
+  }
+  
+  .img-zoom-result {
+    border: 2px solid #d4d4d4;
+    /*set the size of the result div:*/
+    width: 300px;
+    height: 300px;
+    z-index: 100;
+  }
+
+  .direct-input{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .direct-box{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 40px;
+    border-radius: 10px;
+  }
+  .result-box{
+    width: 600px;
+    border: 2px green solid;
+    border-radius: 10px;
+    /* position: relative; */
+    text-align: center;
+  }
+
+  .result-an{
+    /* position: absolute; */
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: white;
+    font-weight: bold;;
+    font-size: 30px;
+    background-color:#15824B;
+
+
+  }
+
+
+
+
+
+
+
+
+
+.checkbox {
+  margin: 15px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+label {
+  font-family: Helvetica; 
+  letter-spacing: 1px;
+  /* // font-variant: small-caps;
+  // text-transform: uppercase; */
+}
+
+.checkbox-flip {
+    display:none;
+}
+
+.checkbox-flip + label span{
+    display:inline-block;
+    width:25px;
+    height:19px;
+    margin: 0 5px -4px 0; /*layout relationship between check and label*/
+    &:before,
+    &:after {
+		  transition: all .3s ease-in-out;
+		  content: "";
+		  position: absolute;
+		  z-index: 1;
+		  width: 1rem;
+		  height: 1.2rem;
+      background: transparent;
+		  border: 2px solid greenyellow; 
+    }
+     &:after {
+      z-index: 0;
+      border: none;
+    }
+}
+
+.checkbox-flip:checked + label span {
+     &:before {
+      transform:rotateY(180deg);
+      background: greenyellow;
+    }
+}
+
+
+.show-option-cb{
+  margin: 20px 0px 0px 20px;
+  font-size: 20px
+}
+
+.cp-title{
+  font-weight: bold;
+}
+
+#mydiv {
+  position: absolute;
+  z-index: 290;
+  left: 700px;
+  top: 1000px;
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+  text-align: center;
+  border-radius: 20px 20px 20px 20px;
+  display: none;
+}
+
+#mydivheader {
+  align-items: center;
+  display: flex;
+  padding: 10px;
+  cursor: move;
+  z-index: 300;
+  background-color: #2196F3;
+  color: #fff;
+  justify-content: space-between;
+  border-radius: 20px 20px 0px 0px;
+
+}
+
+#img-container{
+  z-index: 310;
+  position: relative;
+}
+
+#zoomC {
+  /* (A) DIMENSIONS */
+  width: 600px;
+  height: 338px;
+ 
+  /* (B) BACKGROUND IMAGE */
+  background: url("/image/rwanda_story.jpeg");
+  background-position: center;
+  background-size: cover;
+}
+
+#zoomtitle{
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+#close {
+	overflow: hidden;
+	position: relative;
+	border: none;
+	padding: 0;
+	width: 2em; height: 2em;
+	border-radius: 50%;
+	background: transparent;
+	color: white;
+	font: inherit;
+	text-indent: 100%;
+	cursor: pointer;
+	
+	&:focus {
+		outline: solid 0 transparent;
+		box-shadow: 0 0 0 2px #8ed0f9
+	}
+	
+	&:hover {
+		background: rgba(29, 161, 142, .1)
+	}
+	
+	&:before, &:after {
+		position: absolute;
+		top: 15%; left: calc(50% - .0625em);
+		width: .125em; height: 70%;
+		border-radius: .125em;
+		transform: rotate(45deg);
+		background: currentcolor;
+		content: ''
+	}
+	
+	&:after { transform: rotate(-45deg); }
+}
+
+.compare,.stat{
+  /* margin: 20px; */
+  padding-left: 20px;
+  height: 100px;
+  font-weight: bold;
+  font-size: 30px;
+  color: #15824B;
+}
+
+.stat{
+  margin-top: 30px;
+  margin-left: 100px;
+}
+
+.recv,#nonew{
+  margin-left: 0px;
+  /* padding-top: 30px; */
+
+  font-size: 24px;
+  color: #999;
+  font-weight: 700;
+}
+
+.newi{
+  font-size: 24px;
+  color: #999;
+  font-weight: 700;
+  margin-left: -2px;
+}
+
+#recv::marker{
+  content: " + ";
+  color: #15824B;
+}
+
+#recg{
+  color: rgb(0, 143, 251);
+}
+
+#newi::marker,#newa::marker,#newb::marker,
+#newc::marker,#newd::marker{
+  content: " - ";
+  color: #c13b2a;
+}
+
+#newr{
+  color: #c13b2a;
+}
+
+#newa,#newb,
+#newc,#newd{
+  margin-left: 25px;
+  font-size: 24px;
+  color: #999;
+  font-weight: 700;
+  
+}
+
+#newr-a{
+  color: rgb(0, 227, 150);
+}
+#newr-b{
+  color: rgb(254, 176, 25);
+}
+#newr-c{
+  color: rgb(255, 69, 96);
+}
+#newr-d{
+  color: rgb(119, 93, 208);
+}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Disease Classification</title>
+        <!-- Step 1 - Include the fusioncharts core library -->
+        <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+        <!-- Step 2 - Include the fusion theme -->
+        <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+        <link rel="stylesheet" href="/style/style.css">
+    </head>
+    
+    <body>
+        <div class="title-box">
+            <div class="title-bar">
+                Cassava Disease <br> Management System
+            </div>
+        </div>
+        
+        <div class="main-body-container">
+                <!-- Draggable DIV -->
+            <div id="mydiv">
+
+                
+
+                <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+                <div id="mydivheader">
+                    <div id="zoomtitle" class="drag-header">
+                        Section:
+                    </div>
+                    <button id="close" onclick="setDragDisplay('none')"></button>
+                </div>
+                <!-- <div id="img-container" >
+                    <img src="/image/rwanda_story.jpeg" >
+                </div> -->
+                <div id="zoomC"></div>
+            </div>
+            
+            <button onclick="pageReload()">Reload page to test</button>
+            <input type="button" value="" onclick="window.open('http://127.0.0.1:5500/index.html', 'mywindow', 'width=500, height=400')"  />
+            <div class="main-content">
+                
+                <div class="status">
+                    
+                    <div class="status-box">
+                        <div class="summary-title">Brief Summary</div>
+                        <div class="status-summary">
+                            <div id="now" class="now"></div>
+                            <div id="total"></div>
+                            <div id="hsum" class="hsum"></div>
+                            <div id="in-sum" class="in-sum">
+                            </div>
+                        </div> 
+                        <div class="chart-summary" style="height: 370px; width: 50%;" id="chartContainer">
+                        </div>
+                    </div>
+
+                    <div class="compare">
+                        Current and last 5 records
+                    </div>
+                    <div id="colchart" onchange="updateChart()">
+                        
+                    </div>
+                    
+                    
+                    <div id="stat" class="stat">
+                        In the comparison with the last record:
+                        <!-- <div id="recv" class="recv">
+                            
+                        </div>
+                        <div id="newi" class="newi">
+
+                        </div> -->
+                        <ol>
+                            <li id="recv" class="recv">
+
+                            </li>
+                            <li  id="newi" class="newi">
+
+                            </li>
+                            <li id="newa" class="newa">
+
+                            </li>
+                            <li id="newb" class="newb">
+                                
+                            </li>
+                            <li id="newc" class="newc">
+                                
+                            </li>
+                            <li id="newd" class="newd">
+                                
+                            </li>
+                        </ol>
+                        <div id="nonew"></div>
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-title">
+                        Detailed Information of All Sections
+                    </div>
+                    <div class="info-box">
+                        <div class="option-box">
+
+                            <div class="show-option-cb">
+                                <div class="cp-title">
+                                    Display sections by status:
+                                </div>
+                                <ul>
+                                    <li class="checkbox" id="hlcb">
+                                    <input class="checkbox-flip" type="checkbox" id="check1" onclick="changeDisplay('hl')"/>
+                                    <label for="check1"><span></span>Healthy</label>
+                                    </li>
+                                    
+                                    <li class="checkbox" id="kcb">
+                                    <input class="checkbox-flip" type="checkbox" id="check2" onclick="changeDisplay('k')"/>
+                                    <label for="check2"><span></span>Bacterial Blight Infected</label>
+                                    </li>
+                                    
+                                    <li class="checkbox" id="lcb">
+                                    <input class="checkbox-flip" type="checkbox" id="check3" onclick="changeDisplay('l')"/>
+                                    <label for="check3"><span></span>Brown Streak Infected</label>
+                                    </li>
+                                    
+                                    <li class="checkbox" id="ccb">
+                                    <input class="checkbox-flip" type="checkbox" id="check4" onclick="changeDisplay('c')"/>
+                                    <label for="check4"><span></span>Green Mottle Infected</label>
+                                    </li>
+                                    
+                                    <li class="checkbox" id="dcb">
+                                    <input class="checkbox-flip" type="checkbox" id="check5" onclick="changeDisplay('d')"/>
+                                    <label for="check5"><span></span>Mosaic infected</label>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="scroll-section">
+                            <div class="detail-info">
+                                <div id="hl" class="detail-sec">
+                                    <div id="hl1" class="sec-title"></div>
+                                    <div id="hl2" class="sec-img">
+                                        
+                                    </div>
+                                </div>
+                                <div id="k" class="detail-sec">
+                                    <div id="k1" class="sec-title">
+                                    </div>
+                                    <div id="k2" class="sec-img">
+                                    </div>
+                                </div>
+                                <div id="l" class="detail-sec">
+                                    <div id="l1" class="sec-title">
+                                    </div>
+                                    <div id="l2" class="sec-img">
+                                    </div>
+                                </div>
+                                <div id="c" class="detail-sec">
+                                    <div id="c1" class="sec-title">
+                                    </div>
+                                    <div id="c2" class="sec-img">
+                                        
+                                    </div>
+                                </div>
+                                <div id="d" class="detail-sec">
+                                    <div id="d1" class="sec-title">
+                                    </div>
+                                    <div id="d2" class="sec-img">
+                                        
+                                    </div>
+                                </div>
+                                
+            
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+                    
+                </div>
+                
+                <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+
+                <script src="upload.js"></script>
+
+                <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+                
+                
+                <div class="direct-box">
+                    <div class="direct-title">
+                        Directly input an image to classify
+                    </div>
+                    <div class="direct-input">
+                        <div class="file-upload">
+                            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+                            
+                            <div id="iuw" class="image-upload-wrap">
+                                <input id="input-img" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                <div class="drag-text">
+                                <h3>Select add Image</h3>
+                                </div>
+                            </div>
+                            <div class="file-upload-content">
+                                <img id="directimg" class="file-upload-image" src="#" alt="your image" />
+                                <div class="image-title-wrap">
+                                <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="result-box">
+                            <div class="result-an">
+                                Result
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <div class="test-direct">
+                    <img src="" id="directthis">
+                </div> -->
+
+            </div>
+        </div>
+        
+
+        
+    </body>
+</html>
