@@ -33,12 +33,13 @@ async def root():
 
 @app.get('/records/')
 async def records():
-    with open('data.json', 'w+') as file:
+    with open('data.json', 'r') as file:
         data = file.read()
     
     try:
         data = json.loads(data)
     except json.decoder.JSONDecodeError:
+        print('json error')
         data = []
 
     return data
@@ -55,12 +56,13 @@ async def classify_image(file: bytes = File(...)):
     res_val = max(proba)
     res_idx = proba.index(res_val)
 
-    with open('data.json', 'w+') as file:
+    with open('data.json', 'r') as file:
         data = file.read()
     
     try:
         data = json.loads(data)
     except json.decoder.JSONDecodeError:
+        print('json error')
         data = []
     finally:
         n = len(data)
