@@ -6,7 +6,7 @@ import json
 import datetime
 
 from PIL import Image
-from fastapi import FastAPI, File
+from fastapi import FastAPI, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from keras.models import load_model
 
@@ -44,6 +44,19 @@ async def records():
 
     return data
 
+@app.post('/records/')
+async def set_records(data: str):
+    try:
+        parse_data = json.loads(data)
+        parse_data = json.dumps(parse_data)
+        with open('data.json', 'w') as file:
+            file.write(parse_data)   
+    except json.decoder.JSONDecodeError:
+        return HTTPException(400, detail='Wrong input format')
+    
+    return {'detail': 'Success'}
+
+
 @app.post('/classfication/')
 async def classify_image(file: bytes = File(...)):
     img = Image.open(io.BytesIO(file))
@@ -56,26 +69,26 @@ async def classify_image(file: bytes = File(...)):
     res_val = max(proba)
     res_idx = proba.index(res_val)
 
-    with open('data.json', 'r') as file:
-        data = file.read()
+    # with open('data.json', 'r') as file:
+    #     data = file.read()
     
-    try:
-        data = json.loads(data)
-    except json.decoder.JSONDecodeError:
-        print('json error')
-        data = []
-    finally:
-        n = len(data)
-        data += [{
-            'id': n+1,
-            'Class': class_names[res_idx],
-            'Proba': float(res_val),
-            'created_on': str(datetime.datetime.now().date())
-        }]
-    data = json.dumps(data, indent=4)
+    # try:
+    #     data = json.loads(data)
+    # except json.decoder.JSONDecodeError:
+    #     print('json error')
+    #     data = []
+    # finally:
+    #     n = len(data)
+    #     data += [{
+    #         'id': n+1,
+    #         'Class': class_names[res_idx],
+    #         'Proba': float(res_val),
+    #         'created_on': str(datetime.datetime.now().date())
+    #     }]
+    # data = json.dumps(data, indent=4)
 
-    with open('data.json', 'w') as file:
-        file.write(data)
+    # with open('data.json', 'w') as file:
+    #     file.write(data)
     
     res = {
         'Class': class_names[res_idx],
