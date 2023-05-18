@@ -4,6 +4,7 @@ import uvicorn
 import numpy as np
 import urllib
 import datetime
+import os
 
 from PIL import Image
 from fastapi import FastAPI, File, Form, HTTPException
@@ -27,6 +28,10 @@ app.add_middleware(
     allow_methods = methods,
     allow_headers = headers    
 )
+
+if not os.path.exists('data.json'):
+    file = open('data.json','x')
+    file.close()
 
 @app.get('/')
 async def root():
