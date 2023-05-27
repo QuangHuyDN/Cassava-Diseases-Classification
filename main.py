@@ -5,12 +5,16 @@ import numpy as np
 import urllib
 import datetime
 import os
+import base64
 
-from PIL import Image
-from fastapi import FastAPI, File, Form, HTTPException
+from PIL import Image, ImageFile
+from fastapi import FastAPI, File, Form
+from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from keras.models import load_model
 from typing import Annotated
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 model = load_model('cassava-model.h5')
 test_datagen, class_names = joblib.load('model-data.pkl')
@@ -53,7 +57,7 @@ async def set_records(data: Annotated[str, Form()]):
 
 @app.get('/remote-classification')
 async def remote_classifying():
-    img = Image.open(urllib.request.urlopen('http://192.168.46.122:5050/saved-photo/'))
+    img = Image.open(urllib.request.urlopen('http://192.168.20.142:5050/saved-photo/'))
     scaled_img = img.resize((224, 224))
 
     img_pred = test_datagen.flow(np.expand_dims(np.asarray(scaled_img), axis=0))
@@ -65,12 +69,12 @@ async def remote_classifying():
 
     img_stream = io.BytesIO()
     scaled_img.save(img_stream, format='PNG')
-    res_bytes = str(img_stream.getvalue())
+    res_bytes = img_stream.getvalue()
 
     res = {
         'Class': class_names[res_idx],
         'Proba': float(res_val),
-        'Img': res_bytes,
+        'Img': jsonable_encoder(res_bytes,custom_encoder={ bytes: lambda v: base64.b64encode(v).decode('utf-8')}),
         'Created_on': str(datetime.datetime.now().date())
     }
     return res
@@ -111,6 +115,7 @@ async def classify_image(file: bytes = File(...)):
     res = {
         'Class': class_names[res_idx],
         'Proba': float(res_val),
+        'Created_on': str(datetime.datetime.now().date())
     }
     return res
 
